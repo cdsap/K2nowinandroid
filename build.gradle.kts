@@ -41,4 +41,5 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.secrets) apply false
     id("io.github.cdsap.kotlinprocess") version "0.1.5"
+    id("io.github.cdsap.gradleprocess") version "0.1.0"
 }
