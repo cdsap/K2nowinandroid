@@ -38,7 +38,19 @@ gradleEnterprise {
         isUploadInBackground = System.getenv("CI") == null
     }
 }
+buildCache {
+    local{
+        isEnabled = false
+    }
+    remote<HttpBuildCache> {
+        isAllowUntrustedServer = true
+        isAllowInsecureProtocol  = true
+        url = uri("http://34.70.35.154:5071/cache/")
+        isEnabled = true
+        isPush = System.getenv("CI") != null
 
+    }
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
