@@ -44,6 +44,9 @@ gradleEnterprise {
 }
 
 buildCache {
+    local{
+        isEnabled = false
+    }
     registerBuildCacheService(GcpBuildCache::class, GcpBuildCacheServiceFactory::class)
     remote(GcpBuildCache::class) {
         projectId = "cache-node"
