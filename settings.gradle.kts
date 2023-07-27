@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import androidx.build.gradle.gcpbuildcache.GcpBuildCache
+import androidx.build.gradle.gcpbuildcache.GcpBuildCacheServiceFactory
+import androidx.build.gradle.gcpbuildcache.ExportedKeyGcpCredentials
 pluginManagement {
     includeBuild("build-logic")
     repositories {
@@ -26,6 +28,7 @@ pluginManagement {
 plugins {
     id("com.gradle.common-custom-user-data-gradle-plugin") version "1.8.1"
     id("com.gradle.enterprise") version "3.13.4"
+    id("androidx.build.gradle.gcpbuildcache") version "1.0.0-beta01"
 }
 
 gradleEnterprise {
@@ -37,6 +40,16 @@ gradleEnterprise {
             isTaskInputFiles = true
         }
         isUploadInBackground = System.getenv("CI") == null
+    }
+}
+
+buildCache {
+    registerBuildCacheService(GcpBuildCache::class, GcpBuildCacheServiceFactory::class)
+    remote(GcpBuildCache::class) {
+        projectId = "cache-node"
+        bucketName = "cache-node"
+        credentials = ExportedKeyGcpCredentials(File("cache-node.json"))
+        isPush = System.getenv("CI") != null
     }
 }
 dependencyResolutionManagement {
