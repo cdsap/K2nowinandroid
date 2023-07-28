@@ -40,7 +40,7 @@ gradleEnterprise {
 }
 buildCache {
     local{
-        isEnabled = false
+        isEnabled = true
     }
     remote<HttpBuildCache> {
         isAllowUntrustedServer = true
