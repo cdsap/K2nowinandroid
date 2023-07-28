@@ -40,12 +40,12 @@ gradleEnterprise {
 }
 buildCache {
     local{
-        isEnabled = true
+        isEnabled = false
     }
     remote<HttpBuildCache> {
         isAllowUntrustedServer = true
         isAllowInsecureProtocol  = true
-        url = uri("http://34.70.35.154:5071/cache/")
+        url = uri("http://34.131.67.121:5071/cache/")
         isEnabled = true
         isPush = System.getenv("CI") != null
 
