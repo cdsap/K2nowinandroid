@@ -45,7 +45,7 @@ buildCache {
     remote<HttpBuildCache> {
         isAllowUntrustedServer = true
         isAllowInsecureProtocol  = true
-        url = uri("http://34.165.33.180:5071/cache/")
+        url = uri("http://34.151.237.44:5071/cache/")
         isEnabled = true
         isPush = System.getenv("CI") != null
 
